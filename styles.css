@@ -1,0 +1,232 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body Styles */
+body {
+  font-family: 'Verdana', sans-serif;
+  background: linear-gradient(to bottom, #2f2f2f, #1c1c1c, #3e2723);
+
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Main Game Container */
+#game {
+  background: linear-gradient(to bottom, #2f2f2f, #1c1c1c, #3e2723);
+  border-radius: 10px;
+  padding: 30px;
+  width: 650px;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.8);
+  border: 2px solid #444;
+}
+
+/* Header for Stats */
+#stats {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #444;
+}
+
+.stat {
+  font-size: 18px;
+  color: #ffcc00;
+}
+
+.stat strong {
+  color: #ffdc00;
+}
+
+/* Monster Stats Section */
+#monsterStats {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 30px;
+}
+
+#monsterName, #monsterHealth {
+  font-size: 18px;
+  color: #ffcc00;
+  font-weight: bold;
+}
+
+/* Text Section */
+#text {
+  font-size: 18px;
+  text-align: center;
+  margin: 20px 0;
+  font-family: 'Impact', sans-serif;
+  color: #fff;
+}
+
+/* Control Buttons Section */
+#controls {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+button {
+  background-color: #d32f2f;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  width: 200px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6);
+}
+
+button:hover {
+  background-color: #b71c1c;
+}
+
+button:active {
+  background-color: #f44336;
+}
+
+button:disabled {
+  background-color: #b0bec5;
+  cursor: not-allowed;
+}
+
+/* Health Bar Styles */
+#healthText, #monsterHealth {
+  font-size: 18px;
+  color: #fff;
+  padding: 5px 20px;
+  background-color: #e53935;
+  border-radius: 5px;
+}
+
+#monsterHealth {
+  background-color: #8e24aa;
+}
+
+#healthText {
+  background-color: #388e3c;
+}
+
+.progress-bar {
+  height: 20px;
+  background-color: #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  transition: width 0.5s ease;
+}
+
+/* Battle Animations */
+#text {
+  font-size: 20px;
+  font-family: 'Arial Black', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: bold;
+  color: #ff0000;
+}
+
+@keyframes attack-animation {
+  0% { transform: scale(1); }
+  25% { transform: scale(1.1); color: red; }
+  50% { transform: scale(1); }
+  75% { transform: scale(1.1); color: red; }
+  100% { transform: scale(1); }
+}
+
+/* Adding the attack animation to text */
+.attack-text {
+  animation: attack-animation 1s ease-out;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  #game {
+    width: 90%;
+    padding: 20px;
+  }
+
+  #controls {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  button {
+    width: 48%;
+  }
+}
+
+
+/* Define a temporary background flash for damage */
+@keyframes damageFlash {
+  0% {
+    background-color: rgba(255, 0, 0, 0.7); /* Semi-transparent red */
+  }
+  50% {
+    background-color: rgba(128, 0, 0, 0.7); /* Darker red */
+  }
+  100% {
+    background-color: rgba(0, 0, 0, 0); /* Transparent, restoring original gradient */
+  }
+}
+
+/* Apply the damage animation */
+.damage {
+  animation: damageFlash 0.5s ease-out;
+  position: absolute; /* To cover the entire screen */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999; /* Ensure it sits above everything */
+  pointer-events: none; /* Prevent it from blocking clicks */
+}
+
+/* The overlay for health purchase effect */
+.heal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999;
+  opacity: 0.5;
+  pointer-events: none; /* Ensure the overlay doesn't interfere with other elements */
+}
+
+/* The animation for the healing effect */
+@keyframes healFlash {
+  0% {
+    background-color: rgba(0, 255, 0, 0.3);
+  }
+  50% {
+    background-color: rgba(0, 255, 0, 0.7);
+  }
+  100% {
+    background-color: rgba(0, 255, 0, 0.3);
+  }
+}
+
+
